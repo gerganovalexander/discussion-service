@@ -17,7 +17,7 @@ public class CommentGeneratorOperationProcessor implements CommentGeneratorOpera
             Comment comment = Comment.builder()
                     .comment("Generated comment")
                     .userId(1L)
-                    .entityType(EntityType.GAME)
+                    .entityType(i % 2 == 0 ? EntityType.GAME : EntityType.REVIEW)
                     .entityId(entityId)
                     .build();
             commentRepository.save(comment);
