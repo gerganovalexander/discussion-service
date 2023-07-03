@@ -29,5 +29,7 @@ public class Comment {
 
     private Long entityId;
 
+    private Boolean markedForDelete = false;
+
 
 }
