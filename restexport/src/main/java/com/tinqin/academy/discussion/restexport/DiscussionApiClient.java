@@ -2,6 +2,7 @@ package com.tinqin.academy.discussion.restexport;
 
 import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAllByEntityIdResult;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
 import comment.update.UpdateCommentResult;
 import operations.createcomment.CreateCommentInput;
 import operations.createcomment.CreateCommentResult;
@@ -23,4 +24,11 @@ public interface DiscussionApiClient {
 
     @RequestLine("POST /api/comments")
     CreateCommentResult createComment(CreateCommentInput createCommentInput);
+
+    @RequestLine("GET /api/comments?entityId={entityId}&entityType={entityType}")
+    GetAllByEntityIdResult getAllCommentsByEntityId(@Param Long entityId, @Param String entityType);
+
+    @RequestLine("GET /api/comments/{id}")
+    GetCommentByIdResult getCommentById(@Param Long id);
+
 }
