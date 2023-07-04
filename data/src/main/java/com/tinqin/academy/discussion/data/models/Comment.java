@@ -2,9 +2,6 @@ package com.tinqin.academy.discussion.data.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "comments")
@@ -28,6 +25,4 @@ public class Comment {
     private EntityType entityType;
 
     private Long entityId;
-
-
 }
