@@ -1,5 +1,7 @@
 package com.tinqin.academy.discussion.restexport;
 
+import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAllByEntityIdResult;
+import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
 import comment.update.UpdateCommentResult;
 import feign.Headers;
 import feign.Param;
@@ -10,6 +12,7 @@ public interface DiscussionApiClient {
 
     @RequestLine("PUT /api/comment/{id}")
     UpdateCommentResult updateComment(@Param long id);
+
     @RequestLine("DELETE /api/comments/{id}")
     DeleteCommentByIdResult deleteCommentById(@Param Long id);
 
