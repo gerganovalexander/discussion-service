@@ -2,6 +2,7 @@ package com.tinqin.academy.discussion.restexport;
 
 import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAllByEntityIdResult;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
@@ -14,4 +15,7 @@ public interface DiscussionApiClient {
 
     @RequestLine("DELETE /api/comments?entityId={entityId}&entityType={entityType}")
     DeleteAllByEntityIdResult deleteCommentsByEntity(@Param Long entityId, @Param String entityType);
+
+    @RequestLine("GET /api/comments?entityId={entityId}&entityType={entityType}")
+    GetAllByEntityIdResult getAllCommentsByEntityId(@Param Long entityId, @Param String entityType);
 }
