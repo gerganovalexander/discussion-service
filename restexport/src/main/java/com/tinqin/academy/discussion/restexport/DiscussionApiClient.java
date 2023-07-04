@@ -22,4 +22,7 @@ public interface DiscussionApiClient {
 
     @RequestLine("GET /api/comments?entityId={entityId}&entityType={entityType}")
     GetAllByEntityIdResult getAllCommentsByEntityId(@Param Long entityId, @Param String entityType);
+
+    @RequestLine("GET /api/comments/{id}")
+    GetCommentByIdResult getCommentById(@Param Long id);
 }
