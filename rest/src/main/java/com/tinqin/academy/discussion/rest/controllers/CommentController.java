@@ -14,6 +14,9 @@ import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAl
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdInput;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdOperation;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdInput;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdOperation;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
 import comment.update.UpdateCommentInput;
 import comment.update.UpdateCommentOperation;
 import comment.update.UpdateCommentResult;
@@ -28,6 +31,7 @@ public class CommentController {
 
     private final DeleteCommentByIdOperation deleteCommentByIdOperation;
     private final DeleteAllByEntityIdOperation deleteAllByEntityIdOperation;
+    private final GetAllByEntityIdOperation getAllByEntityIdOperation;
     private final GetCommentByIdOperation getCommentByIdOperation;
     private final UpdateCommentOperation updateCommentOperation;
 
@@ -39,15 +43,23 @@ public class CommentController {
 
     @DeleteMapping("/delete-all-by-entityId")
     public DeleteAllByEntityIdResult deleteAllByEntity(
-            @RequestBody @Valid DeleteAllByEntityIdInput getAllGamesByIdsInput) {
-        return deleteAllByEntityIdOperation.process(getAllGamesByIdsInput);
-        }
+            @RequestBody @Valid DeleteAllByEntityIdInput deleteAllByEntityIdInput) {
+        return deleteAllByEntityIdOperation.process(deleteAllByEntityIdInput);
+    }
+
+
+    @GetMapping("/get-all-by-entityId")
+    public GetAllByEntityIdResult getAllByEntityId(
+            @RequestBody @Valid GetAllByEntityIdInput getAllByEntityIdInput) {
+        return getAllByEntityIdOperation.process(getAllByEntityIdInput);
+    }
 
     @GetMapping("/{id}")
     public GetCommentByIdResult getById(@PathVariable Long id) {
         return getCommentByIdOperation.process(
                 GetCommentByIdInput.builder().id(id).build());
     }
+
     @PutMapping("/{id}")
     public UpdateCommentResult updateComment(@PathVariable Long id) {
         return updateCommentOperation.process(
