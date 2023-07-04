@@ -1,4 +1,4 @@
-package comment.getallbyentityid;
+package com.tinqin.academy.discussion.api.operations.getallbyentityid;
 
 import com.tinqin.academy.discussion.api.generics.OperationResult;
 import entityoutputmodels.CommentOutput;

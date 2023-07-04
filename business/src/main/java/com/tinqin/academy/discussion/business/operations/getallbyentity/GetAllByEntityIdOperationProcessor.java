@@ -1,19 +1,14 @@
-package com.tinqin.academy.discussion.business.operations.comment;
+package com.tinqin.academy.discussion.business.operations.getallbyentity;
 
 import com.tinqin.academy.discussion.data.models.EntityType;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
-import comment.deleteallbyentityid.DeleteAllByEntityIdInput;
-import comment.deleteallbyentityid.DeleteAllByEntityIdOperation;
-import comment.deleteallbyentityid.DeleteAllByEntityIdResult;
-import comment.getallbyentityid.GetAllByEntityIdInput;
-import comment.getallbyentityid.GetAllByEntityIdOperation;
-import comment.getallbyentityid.GetAllByEntityIdResult;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdInput;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdOperation;
+import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
 import entityoutputmodels.CommentOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
