@@ -23,12 +23,16 @@ import comment.update.UpdateCommentResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import operations.createcomment.CreateCommentInput;
+import operations.createcomment.CreateCommentOperation;
+import operations.createcomment.CreateCommentResult;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/comments")
 public class CommentController {
 
+    private final CreateCommentOperation createCommentOperation;
     private final DeleteCommentByIdOperation deleteCommentByIdOperation;
     private final DeleteAllByEntityIdOperation deleteAllByEntityIdOperation;
     private final GetAllByEntityIdOperation getAllByEntityIdOperation;
@@ -64,5 +68,9 @@ public class CommentController {
     public UpdateCommentResult updateComment(@PathVariable Long id) {
         return updateCommentOperation.process(
                 UpdateCommentInput.builder().id(id).build());
+        }
+    @PostMapping
+    public CreateCommentResult createComment(@RequestBody @Valid CreateCommentInput createCommentInput) {
+        return createCommentOperation.process(createCommentInput);
     }
 }

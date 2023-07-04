@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
+    boolean existsByComment(String commentValue);
+
     List<Comment> findAllByEntityIdAndEntityType(Long entityId, EntityType entityType);
 
 }
