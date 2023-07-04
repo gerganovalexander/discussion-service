@@ -10,4 +10,9 @@ public interface DiscussionApiClient {
 
     @RequestLine("PUT /api/comment/{id}")
     UpdateCommentResult updateComment(@Param long id);
+    @RequestLine("DELETE /api/comments/{id}")
+    DeleteCommentByIdResult deleteCommentById(@Param Long id);
+
+    @RequestLine("DELETE /api/comments?entityId={entityId}&entityType={entityType}")
+    DeleteAllByEntityIdResult deleteCommentsByEntity(@Param Long entityId, @Param String entityType);
 }
