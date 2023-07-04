@@ -9,6 +9,9 @@ import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteComm
 import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdInput;
 import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdOperation;
 import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
+import comment.update.UpdateCommentInput;
+import comment.update.UpdateCommentOperation;
+import comment.update.UpdateCommentResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +24,7 @@ public class CommentController {
     private final DeleteCommentByIdOperation deleteCommentByIdOperation;
     private final DeleteAllByEntityIdOperation deleteAllByEntityIdOperation;
     private final GetAllByEntityIdOperation getAllByEntityIdOperation;
-
+    private final UpdateCommentOperation updateCommentOperation;
     @DeleteMapping("/{id}")
     public DeleteCommentByIdResult deleteById(@PathVariable Long id) {
         return deleteCommentByIdOperation.process(
@@ -39,5 +42,10 @@ public class CommentController {
     public GetAllByEntityIdResult getAllByEntityId(
             @RequestBody @Valid GetAllByEntityIdInput getAllByEntityIdInput) {
         return getAllByEntityIdOperation.process(getAllByEntityIdInput);
+    }
+    @PutMapping("/{id}")
+    public UpdateCommentResult updateComment(@PathVariable Long id) {
+        return updateCommentOperation.process(
+                UpdateCommentInput.builder().id(id).build());
     }
 }
