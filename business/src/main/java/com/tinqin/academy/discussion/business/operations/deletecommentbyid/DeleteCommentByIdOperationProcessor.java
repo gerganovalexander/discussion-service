@@ -3,6 +3,7 @@ package com.tinqin.academy.discussion.business.operations.deletecommentbyid;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdInput;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdOperation;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
+import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,13 @@ public class DeleteCommentByIdOperationProcessor implements DeleteCommentByIdOpe
 
     @Override
     public DeleteCommentByIdResult process(final DeleteCommentByIdInput input) {
-        if (!commentRepository.existsById(input.getId()))
-            throw new EntityNotFoundException(String.format("Comment with id %d not found", input.getId()));
+        Comment comment = commentRepository
+                .findById(input.getId())
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Comment with id %d not found", input.getId())));
 
-        commentRepository.deleteById(input.getId());
+        comment.setMarkedForDelete(true);
+        commentRepository.save(comment);
 
         return DeleteCommentByIdResult.builder().success(true).build();
     }

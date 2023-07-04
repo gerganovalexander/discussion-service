@@ -1,4 +1,4 @@
-package comment.deleteallbyentityid;
+package com.tinqin.academy.discussion.api.operations.deleteallbyentityid;
 
 import com.tinqin.academy.discussion.api.generics.OperationInput;
 import jakarta.validation.constraints.NotNull;
