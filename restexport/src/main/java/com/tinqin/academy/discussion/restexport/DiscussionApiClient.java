@@ -3,12 +3,13 @@ package com.tinqin.academy.discussion.restexport;
 import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAllByEntityIdResult;
 import com.tinqin.academy.discussion.api.operations.deletecommentbyid.DeleteCommentByIdResult;
 import com.tinqin.academy.discussion.api.operations.getallbyentityid.GetAllByEntityIdResult;
+import com.tinqin.academy.discussion.api.operations.getcommentbyid.GetCommentByIdResult;
 import comment.update.UpdateCommentResult;
-import operations.createcomment.CreateCommentInput;
-import operations.createcomment.CreateCommentResult;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
+import operations.createcomment.CreateCommentInput;
+import operations.createcomment.CreateCommentResult;
 
 @Headers({"Accept: application/json", "Content-Type: application/json"})
 public interface DiscussionApiClient {
@@ -30,5 +31,4 @@ public interface DiscussionApiClient {
 
     @RequestLine("GET /api/comments/{id}")
     GetCommentByIdResult getCommentById(@Param Long id);
-
 }
