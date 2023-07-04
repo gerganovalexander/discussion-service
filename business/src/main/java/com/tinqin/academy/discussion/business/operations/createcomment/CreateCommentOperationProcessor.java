@@ -1,11 +1,13 @@
 package com.tinqin.academy.discussion.business.operations.createcomment;
 
+import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.models.EntityType;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
 import com.tinqin.academy.piim.api.game.getbyid.GetByIdGameResult;
 import com.tinqin.academy.piim.api.review.getbyid.GetByIdReviewResult;
 import com.tinqin.academy.piim.restexport.PiimApiClient;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import operations.createcomment.CreateCommentInput;
 import operations.createcomment.CreateCommentOperation;
@@ -22,24 +24,40 @@ public class CreateCommentOperationProcessor implements CreateCommentOperation {
 
     private final PiimApiClient piimApiClient;
 
-
     @Override
     public CreateCommentResult process(CreateCommentInput input) {
 
-            switch (input.getEntityType().toLowerCase()) {
-                case "game":
-                    Optional<GetByIdGameResult> gameType = Optional.ofNullable(piimApiClient.getGameById(input.getEntityId()));
-                case "review":
-                    Optional<GetByIdReviewResult> reviewType = Optional.ofNullable(piimApiClient.getReviewById(input.getEntityId()));
-            }
+        // Either would fit better
+        switch (input.getEntityType().toLowerCase()) {
+            case "game":
+                Optional<GetByIdGameResult> gameType =
+                        Optional.ofNullable(piimApiClient.getGameById(input.getEntityId()));
+                if (gameType.isEmpty()) {
+                    throw new EntityNotFoundException(
+                            String.format("Game with id %d does not exist.", input.getEntityId()));
+                }
+            case "review":
+                Optional<GetByIdReviewResult> reviewType =
+                        Optional.ofNullable(piimApiClient.getReviewById(input.getEntityId()));
+                if (reviewType.isEmpty())
+                    throw new EntityNotFoundException(
+                            String.format("Game with id %d does not exist.", input.getEntityId()));
+        }
+        Comment comment = Comment.builder()
+                .comment(input.getComment())
+                .userId(input.getUserId())
+                .entityType(EntityType.valueOf(input.getEntityType()))
+                .entityId(input.getEntityId())
+                .build();
 
+        comment = commentRepository.save(comment);
 
-        if (commentRepository.existsByComment(input.getComment())) {
-            throw new EntityExistsException("The same comment already exists");
-
-//            Does the comment need extra validation for existence?
-//            How can i make the switch case in another way ?
-//            ResultDTO will have all of the fields?
-                    }
+        return CreateCommentResult.builder()
+                .id(comment.getId())
+                .comment(comment.getComment())
+                .entityType(String.valueOf(comment.getEntityType()))
+                .entityId(comment.getEntityId())
+                .userId(comment.getUserId())
+                .build();
+        }
     }
-}
