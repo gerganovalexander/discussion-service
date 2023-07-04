@@ -1,4 +1,4 @@
-package com.tinqin.academy.discussion.business.operations.generator;
+package com.tinqin.academy.discussion.shell.generator;
 
 import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.models.EntityType;

@@ -25,6 +25,7 @@
         <module>rest</module>
         <module>api</module>
         <module>restexport</module>
+        <module>shell</module>
     </modules>
 
     <properties>

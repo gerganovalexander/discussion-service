@@ -1,4 +1,4 @@
-package com.tinqin.academy.discussion.business.operations.generator;
+package com.tinqin.academy.discussion.shell.generator;
 
 public interface CommentGeneratorOperation {
     void generateComments(Long numberOfComments, Long entityId);
