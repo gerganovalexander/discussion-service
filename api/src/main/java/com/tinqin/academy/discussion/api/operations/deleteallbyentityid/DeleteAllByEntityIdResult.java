@@ -1,4 +1,4 @@
-package comment.deleteallbyentityid;
+package com.tinqin.academy.discussion.api.operations.deleteallbyentityid;
 
 import com.tinqin.academy.discussion.api.generics.OperationResult;
 import lombok.*;
@@ -11,5 +11,4 @@ import lombok.*;
 public class DeleteAllByEntityIdResult implements OperationResult {
 
     private Boolean success;
-
 }
