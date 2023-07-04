@@ -25,6 +25,7 @@ public class UpdateCommentOperationProcessor implements UpdateCommentOperation {
         return UpdateCommentResult.builder()
                 .comment(commentForUpdate.getComment())
                 .userId(commentForUpdate.getUserId())
+                .entityType(commentForUpdate.getEntityType().name())
                 .entityId(commentForUpdate.getEntityId())
                 .build();
     }

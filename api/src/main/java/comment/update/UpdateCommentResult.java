@@ -11,6 +11,6 @@ import lombok.*;
 public class UpdateCommentResult implements OperationResult {
     private String comment;
     private Long userId;
-    //    private EntityType entityType;
+    private String entityType;
     private Long entityId;
 }
