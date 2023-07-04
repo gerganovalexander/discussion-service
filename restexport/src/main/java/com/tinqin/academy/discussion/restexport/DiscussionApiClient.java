@@ -8,8 +8,8 @@ import comment.update.UpdateCommentResult;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
-import operations.createcomment.CreateCommentInput;
-import operations.createcomment.CreateCommentResult;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentInput;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentResult;
 
 @Headers({"Accept: application/json", "Content-Type: application/json"})
 public interface DiscussionApiClient {

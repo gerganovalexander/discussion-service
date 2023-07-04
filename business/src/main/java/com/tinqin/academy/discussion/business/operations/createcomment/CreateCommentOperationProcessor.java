@@ -4,19 +4,14 @@ import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.models.EntityType;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
 import com.tinqin.academy.piim.api.game.existsbyid.ExistsByIdGameResult;
-import com.tinqin.academy.piim.api.game.getbyid.GetByIdGameResult;
 import com.tinqin.academy.piim.api.review.existsbyid.ExistsByIdReviewResult;
-import com.tinqin.academy.piim.api.review.getbyid.GetByIdReviewResult;
 import com.tinqin.academy.piim.restexport.PiimApiClient;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import operations.createcomment.CreateCommentInput;
-import operations.createcomment.CreateCommentOperation;
-import operations.createcomment.CreateCommentResult;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentInput;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentOperation;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentResult;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

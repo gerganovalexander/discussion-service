@@ -21,11 +21,10 @@ import comment.update.UpdateCommentInput;
 import comment.update.UpdateCommentOperation;
 import comment.update.UpdateCommentResult;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import operations.createcomment.CreateCommentInput;
-import operations.createcomment.CreateCommentOperation;
-import operations.createcomment.CreateCommentResult;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentInput;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentOperation;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentResult;
 
 @RequiredArgsConstructor
 @RestController

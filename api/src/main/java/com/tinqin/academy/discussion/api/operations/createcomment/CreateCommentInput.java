@@ -1,4 +1,4 @@
-package operations.createcomment;
+package com.tinqin.academy.discussion.api.operations.createcomment;
 
 import com.tinqin.academy.discussion.api.generics.OperationInput;
 import jakarta.validation.constraints.NotEmpty;
