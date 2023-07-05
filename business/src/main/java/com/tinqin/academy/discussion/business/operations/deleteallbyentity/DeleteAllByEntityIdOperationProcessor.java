@@ -6,6 +6,7 @@ import com.tinqin.academy.discussion.api.operations.deleteallbyentityid.DeleteAl
 import com.tinqin.academy.discussion.data.models.EntityType;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class DeleteAllByEntityIdOperationProcessor implements DeleteAllByEntityI
     public DeleteAllByEntityIdResult process(DeleteAllByEntityIdInput input) {
         EntityType entityType = EntityType.valueOf(input.getEntityType().toUpperCase());
         commentRepository
-                .findAllByEntityIdAndEntityType(input.getEntityId(), entityType)
+                .findAllByEntityIdAndEntityType(input.getEntityId(), entityType, Pageable.unpaged())
                 .forEach(comment -> {
                     comment.setMarkedForDelete(true);
                     commentRepository.save(comment);
