@@ -12,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class GetAllByEntityIdResult implements OperationResult {
-
+    private Integer page;
+    private Integer limit;
+    private Long totalItems;
     private List<CommentOutput> commentOutput;
-
 }

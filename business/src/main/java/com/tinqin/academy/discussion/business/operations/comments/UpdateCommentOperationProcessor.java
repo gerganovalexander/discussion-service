@@ -1,10 +1,10 @@
 package com.tinqin.academy.discussion.business.operations.comments;
 
+import com.tinqin.academy.discussion.api.operations.update.UpdateCommentInput;
+import com.tinqin.academy.discussion.api.operations.update.UpdateCommentOperation;
+import com.tinqin.academy.discussion.api.operations.update.UpdateCommentResult;
 import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
-import comment.update.UpdateCommentInput;
-import comment.update.UpdateCommentOperation;
-import comment.update.UpdateCommentResult;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

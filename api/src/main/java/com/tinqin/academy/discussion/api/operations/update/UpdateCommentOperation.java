@@ -1,4 +1,4 @@
-package comment.update;
+package com.tinqin.academy.discussion.api.operations.update;
 
 import com.tinqin.academy.discussion.api.generics.OperationInterface;
 

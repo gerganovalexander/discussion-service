@@ -11,6 +11,12 @@ import lombok.*;
 @Builder
 public class GetAllByEntityIdInput implements OperationInput {
     @NotNull
+    private Integer page;
+
+    @NotNull
+    private Integer limit;
+
+    @NotNull
     private Long entityId;
 
     @NotNull
