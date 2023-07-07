@@ -46,7 +46,7 @@ public class CommentController {
         return deleteAllByEntityIdOperation.process(deleteAllByEntityIdInput);
     }
 
-    @GetMapping("/get-all-by-entityId")
+    @PostMapping("/get-all-by-entityId")
     public GetAllByEntityIdResult getAllByEntityId(@RequestBody @Valid GetAllByEntityIdInput getAllByEntityIdInput) {
         return getAllByEntityIdOperation.process(getAllByEntityIdInput);
     }

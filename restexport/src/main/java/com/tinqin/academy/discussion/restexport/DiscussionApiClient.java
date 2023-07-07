@@ -28,7 +28,7 @@ public interface DiscussionApiClient {
     @RequestLine("POST /api/comments")
     CreateCommentResult createComment(CreateCommentInput createCommentInput);
 
-    @RequestLine("GET /api/comments/get-all-by-entityId")
+    @RequestLine("POST /api/comments/get-all-by-entityId")
     GetAllByEntityIdResult getAllCommentsByEntityId(GetAllByEntityIdInput input);
 
     @RequestLine("GET /api/comments/{id}")
