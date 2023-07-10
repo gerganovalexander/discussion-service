@@ -20,12 +20,13 @@ import com.tinqin.academy.discussion.api.operations.update.UpdateCommentOperatio
 import com.tinqin.academy.discussion.api.operations.update.UpdateCommentResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/comments")
-public class CommentController {
+public class CommentController extends BaseController {
 
     private final CreateCommentOperation createCommentOperation;
     private final DeleteCommentByIdOperation deleteCommentByIdOperation;
@@ -35,36 +36,35 @@ public class CommentController {
     private final UpdateCommentOperation updateCommentOperation;
 
     @DeleteMapping("/{id}")
-    public DeleteCommentByIdResult deleteById(@PathVariable Long id) {
-        return deleteCommentByIdOperation.process(
-                DeleteCommentByIdInput.builder().id(id).build());
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        return handleOperation(deleteCommentByIdOperation.process(
+                DeleteCommentByIdInput.builder().id(id).build()));
     }
 
     @DeleteMapping("/delete-all-by-entityId")
-    public DeleteAllByEntityIdResult deleteAllByEntity(
-            @RequestBody @Valid DeleteAllByEntityIdInput deleteAllByEntityIdInput) {
-        return deleteAllByEntityIdOperation.process(deleteAllByEntityIdInput);
+    public ResponseEntity<?> deleteAllByEntity(@RequestBody @Valid DeleteAllByEntityIdInput deleteAllByEntityIdInput) {
+        return handleOperation(deleteAllByEntityIdOperation.process(deleteAllByEntityIdInput));
     }
 
     @PostMapping("/get-all-by-entityId")
-    public GetAllByEntityIdResult getAllByEntityId(@RequestBody @Valid GetAllByEntityIdInput getAllByEntityIdInput) {
-        return getAllByEntityIdOperation.process(getAllByEntityIdInput);
+    public ResponseEntity<?> getAllByEntityId(@RequestBody @Valid GetAllByEntityIdInput getAllByEntityIdInput) {
+        return handleOperation(getAllByEntityIdOperation.process(getAllByEntityIdInput));
     }
 
     @GetMapping("/{id}")
-    public GetCommentByIdResult getById(@PathVariable Long id) {
-        return getCommentByIdOperation.process(
-                GetCommentByIdInput.builder().id(id).build());
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        return handleOperation(getCommentByIdOperation.process(
+                GetCommentByIdInput.builder().id(id).build()));
     }
 
     @PutMapping("/{id}")
-    public UpdateCommentResult updateComment(@PathVariable Long id) {
-        return updateCommentOperation.process(
-                UpdateCommentInput.builder().id(id).build());
+    public ResponseEntity<?> updateComment(@PathVariable Long id) {
+        return handleOperation(updateCommentOperation.process(
+                UpdateCommentInput.builder().id(id).build()));
     }
 
     @PostMapping
-    public CreateCommentResult createComment(@RequestBody @Valid CreateCommentInput createCommentInput) {
-        return createCommentOperation.process(createCommentInput);
+    public ResponseEntity<?> createComment(@RequestBody @Valid CreateCommentInput createCommentInput) {
+        return handleOperation(createCommentOperation.process(createCommentInput));
     }
 }
