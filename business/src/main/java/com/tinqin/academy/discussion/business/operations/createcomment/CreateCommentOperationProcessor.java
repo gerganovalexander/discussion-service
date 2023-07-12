@@ -2,6 +2,9 @@ package com.tinqin.academy.discussion.business.operations.createcomment;
 
 import com.tinqin.academy.discussion.api.errors.CreateCommentError;
 import com.tinqin.academy.discussion.api.generics.DiscussionError;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentInput;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentOperation;
+import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentResult;
 import com.tinqin.academy.discussion.data.models.Comment;
 import com.tinqin.academy.discussion.data.models.EntityType;
 import com.tinqin.academy.discussion.data.repositories.CommentRepository;
@@ -12,9 +15,6 @@ import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentInput;
-import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentOperation;
-import com.tinqin.academy.discussion.api.operations.createcomment.CreateCommentResult;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,20 +32,22 @@ public class CreateCommentOperationProcessor implements CreateCommentOperation {
 
                     // Either would fit better
                     switch (input.getEntityType().toLowerCase()) {
-                        case "game":
+                        case "game" -> {
                             ExistsByIdGameResult doesGameExist =
                                     piimApiClient.checkIfGameExistsById(input.getEntityId());
                             if (!doesGameExist.getDoesExist()) {
                                 throw new EntityNotFoundException(
                                         String.format("Game with id %d does not exist.", input.getEntityId()));
                             }
-                        case "review":
+                        }
+                        case "review" -> {
                             ExistsByIdReviewResult doesReviewExist =
                                     piimApiClient.checkIfReviewExistsById(input.getEntityId());
                             if (!doesReviewExist.getDoesExist()) {
                                 throw new EntityNotFoundException(
                                         String.format("Review with id %d does not exist.", input.getEntityId()));
                             }
+                        }
                     }
                     Comment comment = Comment.builder()
                             .comment(input.getComment())
